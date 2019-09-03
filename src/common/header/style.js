@@ -39,9 +39,31 @@ export const NavItem = styled.div`
   &.right {
     float: right;
     color: #969696;
+    .iconfont {
+      font-size: 20px;
+    }
   }
   &.active {
     color: #ea6f5a;
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  position: relative;
+  float: left;
+  .zoom {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 18px;
+    &.focused {
+      background: #969696;
+      color: #fff;
+    }
   }
 `;
 
@@ -50,6 +72,7 @@ export const NavSearch = styled.input.attrs({
 })`
   width: 160px;
   height: 38px;
+  padding: 0 30px 0 20px;
   margin-top: 9px;
   margin-left: 20px;
   padding: 0 20px;
@@ -59,9 +82,73 @@ export const NavSearch = styled.input.attrs({
   border-radius: 19px;
   font-size: 14px;
   background: #EEEEEE;
+  color: #666;
   &::placeholder {
     color: #999;
   }
+  &.focused {
+    width: 240px;
+  }
+  &.slide-enter {
+    transition: all .2s ease-out;
+  }
+  &.slide-enter-active {
+    width: 240px;
+  }
+  &.slide-exit {
+    transition: all .2s ease-out;
+  }
+  &.slide-exit-active {
+    width: 160px;
+  }
+`;
+
+export const SearchInfo = styled.div`
+  position: absolute;
+  left: 0;
+  top: 56px;
+  width: 240px;
+  padding: 0 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+`;
+
+export const SearchInfoTitle = styled.div`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`;
+
+export const SearchInfoSwitch = styled.span`
+  float: right;
+  font-size: 13px;
+  cursor: pointer;
+  .spin {
+    display: block;
+    float: left;
+    margin-right: 2px;
+    font-size: 12px;
+    transition: all .2s ease-in;
+    transform-origin: center center;
+  }
+`;
+
+export const SearchInfoList = styled.div`
+  overflow: hidden;
+`;
+
+export const SearchInfoItem = styled.a`
+  display: block;
+  float: left;
+  line-height: 20px;
+  padding: 0 5px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  color: #787878;
+  border-radius: 3px; 
 `;
 
 export const Addition = styled.div`
