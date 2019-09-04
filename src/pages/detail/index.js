@@ -7,6 +7,7 @@ import {
   BackTop,
   Diamond
 } from './style';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from './store/actionCreators';
 
@@ -66,7 +67,7 @@ const mapState = (state) => ({
   title: state.getIn(['detail', 'title']),
   content: state.getIn(['detail', 'content']),
   showScroll: state.getIn(['detail', 'showScroll'])
-})
+});
 
 
 const mapDispatch = (dispatch) => ({
@@ -80,6 +81,6 @@ const mapDispatch = (dispatch) => ({
       dispatch(actionCreators.toggleTopShow(false));
     }
   }
-})
+});
 
-export default connect(mapState, mapDispatch)(Detail);
+export default connect(mapState, mapDispatch)(withRouter(Detail));

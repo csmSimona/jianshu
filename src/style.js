@@ -44,4 +44,4 @@ export const GrobalStyle = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
-`
+`;

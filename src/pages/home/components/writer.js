@@ -52,7 +52,7 @@ const mapState = (state) => {
     totalPage: state.getIn(['home', 'totalPage']),
     list: state.getIn(['home', 'writerList'])
   }
-}
+};
 
 const mapDispatch = (dispatch) => {
   return {
@@ -71,6 +71,6 @@ const mapDispatch = (dispatch) => {
       }
     }
   }
-}
+};
 
 export default connect(mapState, mapDispatch)(Writer);

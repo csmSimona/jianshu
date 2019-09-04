@@ -32,6 +32,7 @@ export const NavItem = styled.div`
   padding: 0 15px;
   font-size: 17px;
   color: #333;
+  cursor: pointer;
   &.left {
     float: left;
   }
@@ -103,6 +104,7 @@ export const NavSearch = styled.input.attrs({
 `;
 
 export const SearchInfo = styled.div`
+  z-index: 1;
   position: absolute;
   left: 0;
   top: 56px;
