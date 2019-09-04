@@ -20,7 +20,7 @@ class List extends PureComponent {
             <ListItem key={index}>
               <img className='pic' alt='' src={item.get('imgUrl')} />
               <ListInfo>
-                <Link to='/detail'>
+                <Link to={'/detail/' + item.get('id')}>
                   <h3 className='title'>{item.get('title')}</h3>
                   <p className='desc'>{item.get('desc')}</p>
                 </Link>

@@ -1,4 +1,2 @@
-export const CHANGE_HOME_DATA = 'home/CHANGE_HOME_DATA';
-export const ADD_ARTICLE_LIST = 'home/ADD_ARTICLE_LIST';
-export const TOGGLE_SCROLL_TOP = 'home/TOGGLE_SCROLL_TOP';
-export const CHANGE_PAGE = 'home/CHANGE_PAGE';
+export const CHANGE_DETAIL_DATA = 'detail/CHANGE_DETAIL_DATA';
+export const TOGGLE_SCROLL_TOP = 'detail/TOGGLE_SCROLL_TOP';

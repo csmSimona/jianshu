@@ -3,31 +3,83 @@ import {
   DetailWrapper,
   Header,
   Content,
-  Writer
+  Writer,
+  BackTop,
+  Diamond
 } from './style';
+import { connect } from 'react-redux';
+import * as actionCreators from './store/actionCreators';
 
 class Detail extends PureComponent {
   render() {
+    const { title, content, showScroll } = this.props;
     return (
-      <DetailWrapper>
-        <Header>简书一年，我找到了一份好工作</Header>
-        <Writer>
-          <img alt='' src='https://images.weserv.nl/?url=http://upload.jianshu.io/users/upload_avatars/3301720/daa79a77-5321-4149-add8-656c1326bc01.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96' />
-          <div className='concern'>+关注</div>
-          <div className='nickname'>陌上红裙</div>
-          <div className='desc'>写了11字 · 11喜欢</div>
-        </Writer>
-        <Content>
-          <img alt='' src='https://images.weserv.nl/?url=https://upload-images.jianshu.io/upload_images/3301720-db890fabf626e0ac.jpg'></img>
-          <p><b>这是我的亲身经历，没有虚构，虽然它听起来不像真的。</b></p>
-          <p>2017年11月7日  星期二 晴</p>
-          <p>说起来很惭愧，在简书写了一年的文，至今，我还是原来的我，既没有签约，也没有写出爆文，甚至连一篇像样点的、拿得出手的文字也没有。</p>
-          <p>相反，嘲笑和挖苦的话倒是听了不少。当面的，背后的，直接了当的，含沙射影的，比比皆是。</p>
-          <p>所有这些，都曾伤透了我的心，我苦恼、彷徨，为自己因为在简书写文而越来越不受人待见而痛苦不堪。</p>
-        </Content>
-      </DetailWrapper>
+      <div>
+        <DetailWrapper>
+          <Header>{ title }</Header>
+          <Writer>
+            <img alt='' src='https://images.weserv.nl/?url=http://upload.jianshu.io/users/upload_avatars/3301720/daa79a77-5321-4149-add8-656c1326bc01.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96' />
+            <div className='concern'>+关注</div>
+            <div className='nickname'>陌上红裙</div>
+            <div className='desc'>
+              <Diamond><span className="iconfont">&#xe63d;</span> 2038.9 </Diamond>
+              2017.11.07 22:00* 字数 2769 阅读 242467 评论 1812 喜欢 9798 赞赏 36</div>
+          </Writer>
+          <Content dangerouslySetInnerHTML={{__html: content}} />
+        </DetailWrapper>
+        {showScroll ? <BackTop onClick={this.handleScrollTop}>顶部</BackTop> : ''}
+      </div>
     )
+  }
+  
+  componentDidMount() {
+    this.props.changeDetailData(this.props.match.params.id);
+    this.bindEvents();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.props.changeScrollTopShow)
+  }
+
+  bindEvents() {
+    window.addEventListener('scroll', this.props.changeScrollTopShow)
+  }
+
+  handleScrollTop() {
+    // window.scrollTo(0, 0);
+    var scrollToptimer = setInterval(function () {
+      var top = document.body.scrollTop || document.documentElement.scrollTop;
+      var speed = top / 4;
+      if (document.body.scrollTop!==0) {
+        document.body.scrollTop -= speed;
+      }else {
+        document.documentElement.scrollTop -= speed;
+      }
+      if (top === 0) {
+        clearInterval(scrollToptimer);
+      }
+    }, 30);
   }
 }
 
-export default Detail;
+const mapState = (state) => ({
+  title: state.getIn(['detail', 'title']),
+  content: state.getIn(['detail', 'content']),
+  showScroll: state.getIn(['detail', 'showScroll'])
+})
+
+
+const mapDispatch = (dispatch) => ({
+  changeDetailData(id) {
+    dispatch(actionCreators.getDetailInfo(id));
+  },
+  changeScrollTopShow() {
+    if (document.documentElement.scrollTop > 100) {
+      dispatch(actionCreators.toggleTopShow(true));
+    } else {
+      dispatch(actionCreators.toggleTopShow(false));
+    }
+  }
+})
+
+export default connect(mapState, mapDispatch)(Detail);

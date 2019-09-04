@@ -32,7 +32,6 @@ export const Content = styled.div`
 export const Writer = styled.div`
   overflow: hidden;
   margin: 10px 0;
-  width: 280px;
   height: 50px;
   img {
     margin-right: 10px;
@@ -53,10 +52,35 @@ export const Writer = styled.div`
     color: #969696;
   }
   .concern {
+    margin-top: 15px;
+    padding: 4px;
     float: right;
-    font-size: 13px;
-    line-height: 48px;
-    color: #42c02e;
+    font-size: 12px;
+    color: #fff;
+    background: #42c02e;
     cursor: pointer;
+    border: 1px solid #42c02e;
+    border-radius: 5px;
   }
+`;
+
+export const BackTop = styled.div`
+  position: fixed;
+  right: 100px;
+  bottom: 100px;
+  width: 52px;
+  height: 52px;
+  font-size: 12px;
+  line-height: 52px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+`;
+
+export const Diamond = styled.span`
+  .iconfont {
+    font-size: 10px;
+  }
+  color: #ea6f5a;
 `;
